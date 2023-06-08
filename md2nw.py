@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Convert Markdown to novelWriter
 
-Version 0.1.0
+Version 0.1.1
 Requires Python 3.6+
 Copyright (c) 2023 Peter Triesberger
 For further information see https://github.com/peter88213/md2nw
@@ -1662,15 +1662,6 @@ class NwxFile(File):
         self._tree = ET.ElementTree(root)
         self._tree.write(self.filePath, xml_declaration=True, encoding='utf-8')
         return f'"{norm_path(self.filePath)}" written.'
-from typing import Iterable
-
-
-def create_id(elements: Iterable) -> str:
-    i = 1
-    while str(i) in elements:
-        i += 1
-    return str(i)
-
 
 
 class MdFile(File):
@@ -1710,7 +1701,6 @@ class MdFile(File):
         try:
             with open(self.filePath, 'r', encoding='utf-8') as f:
                 mdText = f.read()
-                mdLines = (mdText).split('\n')
         except(FileNotFoundError):
             raise Error(f'{_("File not found")}: "{norm_path(self.filePath)}".')
 
@@ -1721,6 +1711,7 @@ class MdFile(File):
             except:
                 raise Error(f'{_("Cannot read file")}: "{norm_path(self.filePath)}".')
 
+        mdLines = mdText.split('\n')
         for mdLine in mdLines:
             if mdLine.startswith('#'):
                 title, desc = split_heading(mdLine)
@@ -1843,7 +1834,7 @@ def main(sourcePath, silentMode=True):
     if silentMode:
         ui = Ui('')
     else:
-        ui = UiCmd('Create a novelWriter project from an Markdown document 0.1.0')
+        ui = UiCmd('Create a novelWriter project from an Markdown document 0.1.1')
 
     kwargs = {'suffix': SUFFIX}
     kwargs.update(SETTINGS)

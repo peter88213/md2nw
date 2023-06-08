@@ -8,7 +8,6 @@ from pywriter.pywriter_globals import *
 from pywriter.file.file import File
 from pywriter.model.chapter import Chapter
 from pywriter.model.scene import Scene
-from pywriter.model.id_generator import create_id
 
 
 class MdFile(File):
@@ -62,7 +61,6 @@ class MdFile(File):
         try:
             with open(self.filePath, 'r', encoding='utf-8') as f:
                 mdText = f.read()
-                mdLines = (mdText).split('\n')
         except(FileNotFoundError):
             raise Error(f'{_("File not found")}: "{norm_path(self.filePath)}".')
 
@@ -74,6 +72,7 @@ class MdFile(File):
             except:
                 raise Error(f'{_("Cannot read file")}: "{norm_path(self.filePath)}".')
 
+        mdLines = mdText.split('\n')
         for mdLine in mdLines:
             if mdLine.startswith('#'):
                 title, desc = split_heading(mdLine)
