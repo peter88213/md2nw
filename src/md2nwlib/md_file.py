@@ -4,11 +4,11 @@ Copyright (c) 2023 Peter Triesberger
 For further information see https://github.com/peter88213/PyWriter
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
+import re
 from pywriter.pywriter_globals import *
 from pywriter.file.file import File
 from pywriter.model.chapter import Chapter
 from pywriter.model.scene import Scene
-from pywriter.model.id_generator import create_id
 
 
 class MdFile(File):
@@ -62,7 +62,6 @@ class MdFile(File):
         try:
             with open(self.filePath, 'r', encoding='utf-8') as f:
                 mdText = f.read()
-                mdLines = (mdText).split('\n')
         except(FileNotFoundError):
             raise Error(f'{_("File not found")}: "{norm_path(self.filePath)}".')
 
@@ -74,6 +73,8 @@ class MdFile(File):
             except:
                 raise Error(f'{_("Cannot read file")}: "{norm_path(self.filePath)}".')
 
+        cnvText = self._convert_to_yw(mdText)
+        mdLines = cnvText.split('\n')
         for mdLine in mdLines:
             if mdLine.startswith('#'):
                 title, desc = split_heading(mdLine)
@@ -116,3 +117,27 @@ class MdFile(File):
                     title = f'Scene {scCount}'
                 self.novel.scenes[scId].title = title
                 self.novel.scenes[scId].desc = desc
+
+    def _convert_to_yw(self, text):
+        """Convert Markdown to yWriter 7 markup.
+        
+        Positional arguments:
+            text -- string to convert.
+        
+        Return a yw7 markup string.
+        Overrides the superclass method.
+        """
+        text = re.sub('\*\*(.+?)\*\*', '[b]\\1[/b]', text)
+        text = re.sub('\*([^ ].+?[^ ])\*', '[i]\\1[/i]', text)
+        text = re.sub('_([^ ].+?[^ ])_', '[i]\\1[/i]', text)
+        MD_REPLACEMENTS = [
+            ('\n\n', '\n'),
+            ('<!---', '/*'),
+            ('--->', '*/'),
+        ]
+        try:
+            for md, yw in MD_REPLACEMENTS:
+                text = text.replace(md, yw)
+        except AttributeError:
+            text = ''
+        return text

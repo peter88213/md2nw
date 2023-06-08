@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<novelWriterXML appVersion="2.0.2" hexVersion="0x020002f0" fileVersion="1.5" timeStamp="2023-06-08 01:44:23">
+<novelWriterXML appVersion="2.0.2" hexVersion="0x020002f0" fileVersion="1.5" timeStamp="2023-06-08 11:12:54">
   <project>
     <name>New project</name>
     <title>New project</title>
@@ -35,7 +35,7 @@
     </item>
     <item handle="90c515622c9f5" parent="f5461686951b1" order="1" type="FILE" class="NOVEL" layout="DOCUMENT">
       <name status="s000003" import="i000001" active="yes">Scene 1</name>
-      <meta charCount="2182" wordCount="375" />
+      <meta charCount="2176" wordCount="375" />
     </item>
     <item handle="f4262f30a3514" parent="53ca4659fb3c2" order="1" type="FOLDER">
       <name>Chapter 2</name>
@@ -75,7 +75,7 @@
     </item>
     <item handle="d791d38c77359" parent="bb96d7cf900b1" order="1" type="FILE" class="NOVEL" layout="DOCUMENT">
       <name status="s000003" import="i000001" active="yes">Hal going to port control</name>
-      <meta charCount="1044" wordCount="175" />
+      <meta charCount="1042" wordCount="175" />
     </item>
     <item handle="d8f74e05426f0" parent="bb96d7cf900b1" order="2" type="FILE" class="NOVEL" layout="DOCUMENT">
       <name status="s000003" import="i000001" active="yes">Clunk checking computer for Incubots.</name>

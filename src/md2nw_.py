@@ -29,7 +29,7 @@ SETTINGS = dict(
     ywriter_tag_keyword='tag',
 )
 OPTIONS = dict(
-    double_linebreaks=False,
+    double_linebreaks=True,
 )
 
 
