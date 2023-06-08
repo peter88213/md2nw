@@ -69,7 +69,7 @@ supported by *novelWriter*.
 #### Level 2 heading used for chapters
 `## Two hash characters at the start of the line.`
 
-#### Level 3 heading used as scene dividers  (not needed for the first scenes in a  chapter).
+#### Level 3 heading used as scene dividers  (not needed for the first scene in a  chapter).
 `### Three hash characters at the start of the line.` Text, if any, is considered as the scene title. 
 
 ### Emphasis
