@@ -72,6 +72,8 @@ supported by *novelWriter*.
 #### Level 3 heading used as scene dividers  (not needed for the first scene in a  chapter).
 `### Three hash characters at the start of the line.` Text, if any, is considered as the scene title. 
 
+**NOTE:** On all levels, you can add an one-line synopsis to the heading, divided by `|`. 
+
 ### Emphasis
 
 #### Italic 
