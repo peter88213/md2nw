@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Convert Markdown to novelWriter
 
-Version 0.1.1
+Version 0.1.2
 Requires Python 3.6+
 Copyright (c) 2023 Peter Triesberger
 For further information see https://github.com/peter88213/md2nw
@@ -70,7 +70,6 @@ def list_to_string(elements, divider=';'):
         return ''
 
 
-
 class Ui:
 
     def __init__(self, title):
@@ -94,7 +93,6 @@ class Ui:
 
     def start(self):
         pass
-
 
 
 class UiCmd(Ui):
@@ -134,6 +132,8 @@ def open_document(document):
                 os.system('open "%s"' % norm_path(document))
             except:
                 pass
+
+
 import re
 from typing import Iterator, Pattern
 
@@ -164,8 +164,9 @@ class Chapter(BasicElement):
         self.suppressChapterBreak: bool = None
 
         self.srtScenes: list[str] = []
-from typing import Pattern
 
+
+from typing import Pattern
 
 ADDITIONAL_WORD_LIMITS: Pattern = re.compile('--|—|–')
 
@@ -272,7 +273,6 @@ class WorldElement(BasicElement):
         self.aka: str = None
 
 
-
 class Character(WorldElement):
     MAJOR_MARKER: str = 'Major'
     MINOR_MARKER: str = 'Minor'
@@ -289,6 +289,7 @@ class Character(WorldElement):
         self.fullName: str = None
 
         self.isMajor: bool = None
+
 
 LANGUAGE_TAG: Pattern = re.compile('\[lang=(.*?)\]')
 
@@ -382,7 +383,6 @@ class Novel(BasicElement):
         self.countryCode = 'none'
 
 
-
 class YwCnvUi:
 
     def __init__(self):
@@ -470,6 +470,7 @@ class YwCnvUi:
         if os.path.isfile(target.filePath) and not self._confirm_overwrite(target.filePath):
             raise Error(f'{_("Action canceled by user")}.')
 
+
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from urllib.parse import quote
@@ -533,7 +534,6 @@ class File:
         return text.rstrip()
 
 
-
 def indent(elem, level=0):
     i = f'\n{level * "  "}'
     if elem:
@@ -548,6 +548,8 @@ def indent(elem, level=0):
     else:
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
+
+
 from hashlib import pbkdf2_hmac
 
 
@@ -615,7 +617,6 @@ class NwItem:
         self.nwHandle = None
         self.nwOrder = None
         self.nwParent = None
-
 
 
 class NwItemV15(NwItem):
@@ -838,7 +839,6 @@ class NwdNovelFile(NwdFile):
 
         self._ywTagKeyword = f'%{prj.kwargs["ywriter_tag_keyword"]}: '
 
-
     def _convert_from_yw(self, text, quick=False):
         if quick:
             if text is None:
@@ -876,7 +876,6 @@ class NwdNovelFile(NwdFile):
         text = re.sub('\*\*(.+?)\*\*', '[b]\\1[/b]', text)
         text = re.sub('\_([^ ].+?[^ ])\_', '[i]\\1[/i]', text)
         text = re.sub('\~\~(.+?)\~\~', '[s]\\1[/s]', text)
-
 
         MD_REPLACEMENTS = []
         if self.doubleLinebreaks:
@@ -1198,6 +1197,7 @@ class NwdObjectFile(NwdFile):
         if item.desc:
             self._lines.append(f'\n{item.desc}')
         return super().write()
+
 
 WRITE_NEW_FORMAT = True
 
@@ -1791,7 +1791,7 @@ class MdNwConverter(YwCnvUi):
                 os.makedirs(f'{prjDir}{NwxFile.CONTENT_DIR}')
             targetFile = NwxFile(f'{prjDir}/nwProject.nwx', **kwargs)
             self.ui.set_info_what(
-                _('Create a novelWriter project file from {0}\nNew project: "{1}"').format(sourceFile.DESCRIPTION, norm_path(targetFile.filePath)))
+                _('Create a novelWriter project from {0}\nNew project: "{1}"').format(sourceFile.DESCRIPTION, norm_path(targetFile.filePath)))
             try:
                 self.check(sourceFile, targetFile)
                 sourceFile.novel = Novel()
@@ -1808,6 +1808,7 @@ class MdNwConverter(YwCnvUi):
                 self.ui.set_info_how(message)
         else:
             self.ui.set_info_how(f'!File type of "{norm_path(sourcePath)}" not supported.')
+
 
 SUFFIX = ''
 APPNAME = 'md2nw'
