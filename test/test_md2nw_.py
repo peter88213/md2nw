@@ -1,7 +1,7 @@
 """ Regression test for the md2nw project.
 
 Copyright (c) 2023 Peter Triesberger
-For further information see https://github.com/peter88213/yw2nw
+For further information see https://github.com/peter88213/md2nw
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 import os
