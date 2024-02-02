@@ -17,18 +17,9 @@ Generate a novelWriter project from a work in progress written with any text edi
 
 ## Instructions for use
 
-### Intended usage
-
-After placing the downloaded script **md2nw.py** to a convenient place, you might want to create a shortcut on the desktop. 
-
-If you drag a text document with extension *.md* and drop it on the icon, a new novelWriter project is generated in a directory named after the document. 
-
-Existing novelWriter project directories will be renamed as a whole and get the extension *.bak*. 
-If there is already such a directory, a new, numbered backup directory is created with the  extension *.bkxxxx*
-
 ### Command line usage
 
-Alternatively, you can
+You can either
 
 - launch the program on the command line passing the *.md* file as an argument, or
 - launch the program via a batch file.
